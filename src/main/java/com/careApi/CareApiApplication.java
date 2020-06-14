@@ -1,0 +1,13 @@
+package com.careApi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CareApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CareApiApplication.class, args);
+	}
+
+}
