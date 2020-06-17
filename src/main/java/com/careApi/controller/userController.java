@@ -39,6 +39,13 @@ public class userController {
 	 
 	        return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
+	    
+	    @PostMapping("/login")
+	    public ResponseEntity<User> loginUser(@RequestBody User user)
+	                                                    throws RecordNotFoundException {
+	    	User updated =userService.loginUser(user);
+	        return new ResponseEntity<User>(updated, new HttpHeaders(), HttpStatus.OK);
+	    }
 	 
 	    @GetMapping("/getlist/{id}")
 	    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) 

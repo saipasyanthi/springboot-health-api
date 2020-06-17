@@ -25,8 +25,6 @@ public class User {
     private Double phoneno;
     private String email;
     private String role;
-    private String newpassword;
-    private String confirmpassword;
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="user_id")
@@ -90,25 +88,6 @@ public class User {
 		this.phoneno = phoneno;
 	}
 
-	 @Column(name="newpassword")
-	public String getNewpassword() {
-		return newpassword;
-	}
-
-	public void setNewpassword(String newpassword) {
-		this.newpassword = newpassword;
-	}
-	
-	@Column(name="confirmpassword")
-	public String getConfirmpassword() {
-		return confirmpassword;
-	}
-
-	public void setConfirmpassword(String confirmpassword) {
-		this.confirmpassword = confirmpassword;
-	}
-
-	
 	public User() {
     }
  
@@ -119,8 +98,6 @@ public class User {
         this.email=email;
         this.role=role;
         this.phoneno=phoneno;
-        this.confirmpassword= confirmpassword;
-        this.newpassword=newpassword;
     }
 
 }

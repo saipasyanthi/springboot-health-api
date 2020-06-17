@@ -78,7 +78,15 @@ public class UserDetailServiceImpl {
 	        } else {
 	            throw new RecordNotFoundException("No user record exist for given id");
 	        }
-	    } 
+	    }
+
+	public User loginUser(User user) {
+		
+		String username=user.getUsername();
+		String password=user.getPassword();
+		return	userDao.findByUsernameAndPassword(username,password);
+		
+	} 
 
 }
 

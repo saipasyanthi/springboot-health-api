@@ -11,7 +11,7 @@ import com.careApi.model.User;
   @Repository
   public interface userRepository extends JpaRepository<User,Long> {
 
-	  
+	  User findByUsernameAndPassword(String username, String password);
   }
  
 
