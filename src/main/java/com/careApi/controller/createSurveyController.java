@@ -33,9 +33,10 @@ public class createSurveyController {
 	        return new ResponseEntity<List<Survey>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
 	 @PostMapping("/createSurvey") 
-	  public void add(@RequestBody Survey survey)
+	  public ResponseEntity<Survey>  add(@RequestBody Survey survey)
 	  {		  
-		 surveyService.createSurvey(survey);			   
+		 Survey created= surveyService.createSurvey(survey);		
+		 return new ResponseEntity<Survey>(created, new HttpHeaders(), HttpStatus.OK);
 	  }
 
 }

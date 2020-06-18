@@ -21,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.careApi.model.Question;
+import com.careApi.model.User;
 import com.careApi.service.QuestionServiceImpl;
 
 @RestController
@@ -39,9 +40,10 @@ public class questionController {
 	        return new ResponseEntity<List<Question>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
 	 @PostMapping("/createQuestion") 
-	  public void add(@RequestBody Question question)
+	  public ResponseEntity<Question> add(@RequestBody Question question)
 	  {		  
-		 questionService.createQuestion(question);			   
+		 Question created= questionService.createQuestion(question);	
+		  return new ResponseEntity<Question>(created, new HttpHeaders(), HttpStatus.OK);
 	  }
 	 
 	 
@@ -58,16 +60,14 @@ public class questionController {
 			
 			JSONParser parser = new JSONParser();
 			 JSONObject json = (JSONObject) parser.parse(question);
-			 System.out.println(json.get("user_id"));			 
-			 System.out.println(json.get("survey_id"));
+			 //System.out.println(json.get("user_id"));			 
+			 //System.out.println(json.get("survey_id"));
 			 JSONArray jsonArray= (JSONArray) json.get("question");
-			 
 			 String user_id=(String) json.get("user_id");
 			 String survey_id=(String) json.get("survey_id");
-			
-			 
+					 
 			  for(int i=0; i<jsonArray.size(); i++){
-		            System.out.println(jsonArray.get(i));
+		       //     System.out.println(jsonArray.get(i));
 		            String ques=(String) jsonArray.get(i);
 		            Question que=new Question();
 		            que.setUser_id(user_id);

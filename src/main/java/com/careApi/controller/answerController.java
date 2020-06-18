@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.careApi.model.Answer;
+import com.careApi.model.Survey;
 import com.careApi.service.AnswerServiceImpl;
 
 @RestController
@@ -33,8 +34,9 @@ public class answerController {
 	        return new ResponseEntity<List<Answer>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
 	 @PostMapping("/createAnswer") 
-	  public void add(@RequestBody Answer answer)
+	  public ResponseEntity<Answer>  add(@RequestBody Answer answer)
 	  {		  
-		 answerService.createAnswer(answer);			   
+		 Answer created= answerService.createAnswer(answer);	
+		 return new ResponseEntity<Answer>(created, new HttpHeaders(), HttpStatus.OK);
 	  }
 }
