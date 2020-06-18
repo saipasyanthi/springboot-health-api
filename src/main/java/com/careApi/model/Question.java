@@ -14,7 +14,7 @@ public class Question {
 	private String question;
     private String survey_id;    
     private String sur_det_id;    
-    private Long user_id;
+    private String user_id;
     private String status;
     
     @Id
@@ -44,11 +44,11 @@ public class Question {
 	public void setSur_det_id(String sur_det_id) {
 		this.sur_det_id = sur_det_id;
 	}
-	public Long getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUser_id(String user_id2) {
+		this.user_id = user_id2;
 	}
 	public String getStatus() {
 		return status;

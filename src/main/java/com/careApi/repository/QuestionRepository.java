@@ -8,4 +8,5 @@ import com.careApi.model.Question;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question,Long>  {
 
+
 }

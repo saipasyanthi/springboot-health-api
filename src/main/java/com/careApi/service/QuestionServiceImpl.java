@@ -21,6 +21,7 @@ public class QuestionServiceImpl {
 		  
 		  }
 
+	 
 	public List<Question> getAllQuestions() {
 		List<Question> questionList = questionDao.findAll();
         

@@ -43,8 +43,8 @@ public class userController {
 	    @PostMapping("/login")
 	    public ResponseEntity<User> loginUser(@RequestBody User user)
 	                                                    throws RecordNotFoundException {
-	    	User updated =userService.loginUser(user);
-	        return new ResponseEntity<User>(updated, new HttpHeaders(), HttpStatus.OK);
+	    	User login =userService.loginUser(user);
+	        return new ResponseEntity<User>(login, new HttpHeaders(), HttpStatus.OK);
 	    }
 	 
 	    @GetMapping("/getlist/{id}")
