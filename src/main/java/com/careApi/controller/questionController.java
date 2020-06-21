@@ -9,12 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -39,6 +34,15 @@ public class questionController {
 	 
 	        return new ResponseEntity<List<Question>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
+
+	@GetMapping("/getlistBySurveyId/{id}")
+	public ResponseEntity<List<Question>> getAllQuestions(@PathVariable("id") String surveyId) {
+		Question que = new Question();
+		que.setSurvey(Long.valueOf(surveyId));
+		List<Question> list = questionService.getAllQuestionsBySurveyID(que.getSurvey());
+		return new ResponseEntity<List<Question>>(list, new HttpHeaders(), HttpStatus.OK);
+	}
+
 	 @PostMapping("/createQuestion") 
 	  public ResponseEntity<Question> add(@RequestBody Question question)
 	  {		  
@@ -60,22 +64,18 @@ public class questionController {
 			
 			JSONParser parser = new JSONParser();
 			 JSONObject json = (JSONObject) parser.parse(question);
-			 //System.out.println(json.get("user_id"));			 
-			 //System.out.println(json.get("survey_id"));
 			 JSONArray jsonArray= (JSONArray) json.get("question");
-			 String user_id=(String) json.get("user_id");
-			 String survey_id=(String) json.get("survey_id");
+			 Long user_id=(Long) json.get("user_id");
+			 Long survey_id=(Long) json.get("survey");
 					 
 			  for(int i=0; i<jsonArray.size(); i++){
-		       //     System.out.println(jsonArray.get(i));
 		            String ques=(String) jsonArray.get(i);
 		            Question que=new Question();
 		            que.setUser_id(user_id);
-		            que.setSurvey_id(survey_id);
+		            que.setSurvey(survey_id);
 		            que.setQuestion(ques);
 		            questionService.createQuestion(que);		
 		        }
-			  
 			  
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

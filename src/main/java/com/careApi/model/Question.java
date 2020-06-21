@@ -12,9 +12,9 @@ import javax.persistence.Table;
 public class Question {
 	private Long id;
 	private String question;
-    private String survey_id;    
+    private Long survey;
     private String sur_det_id;    
-    private String user_id;
+    private Long user_id;
     private String status;
     
     @Id
@@ -23,6 +23,16 @@ public class Question {
 	public Long getId() {
 		return id;
 	}
+
+	@Column(name="survey_id")
+	public Long getSurvey() {
+		return survey;
+	}
+
+	public void setSurvey(Long survey) {
+		this.survey = survey;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -32,22 +42,16 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public String getSurvey_id() {
-		return survey_id;
-	}
-	public void setSurvey_id(String survey_id) {
-		this.survey_id = survey_id;
-	}
 	public String getSur_det_id() {
 		return sur_det_id;
 	}
 	public void setSur_det_id(String sur_det_id) {
 		this.sur_det_id = sur_det_id;
 	}
-	public String getUser_id() {
+	public Long getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(String user_id2) {
+	public void setUser_id(Long user_id2) {
 		this.user_id = user_id2;
 	}
 	public String getStatus() {
@@ -58,7 +62,7 @@ public class Question {
 	}
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", survey_id=" + survey_id + ", sur_det_id="
+		return "Question [id=" + id + ", question=" + question + ", survey_id=" + survey + ", sur_det_id="
 				+ sur_det_id + ", user_id=" + user_id + ", status=" + status + "]";
 	}
 	

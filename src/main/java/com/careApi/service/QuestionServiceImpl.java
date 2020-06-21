@@ -31,4 +31,13 @@ public class QuestionServiceImpl {
             return new ArrayList<Question>();
         } 
 	}
+
+	public List<Question> getAllQuestionsBySurveyID(Long surveyId) {
+		List<Question> questionList = questionDao.findAllBySurvey(surveyId);
+		if(questionList.size() > 0) {
+			return questionList;
+		} else {
+			return new ArrayList<Question>();
+		}
+	}
 }
